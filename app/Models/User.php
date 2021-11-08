@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Cart;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +10,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

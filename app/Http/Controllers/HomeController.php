@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Producto;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 class HomeController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,7 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $cats_195 = Producto::all()->where('categoria','195g');
+
+        if( Auth::check() ){
+            $user_id = auth()->user()->id;
+            $cart = Cart::all()->where('user_id',$user_id)->count();
+            return view('home', compact('cats_195','cart'));
+        }
+        return view('home', compact('cats_195'));
     }
     public function vendedorHome()
     {

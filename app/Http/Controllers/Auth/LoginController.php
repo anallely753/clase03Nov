@@ -37,13 +37,12 @@ class LoginController extends Controller
                 return '/vendedor/home';
                 break; 
             case '2':
-                return '/admin/home';
+                return route('adminuser.index');
                 break;
             default:
                 return '/'; 
             break;
         }
-
     }
 
     /**

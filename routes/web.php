@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminProductoController;
-
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +26,6 @@ Route::get('vendedor/home', [HomeController::class, 'vendedorHome'])->name('vend
 
 Route::resource('adminuser', AdminUserController::class);
 Route::resource('adminproducto', AdminProductoController::class);
+Route::resource('cart',CartController::class);
 
 

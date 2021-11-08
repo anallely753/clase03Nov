@@ -46,7 +46,9 @@
                             <a class="nav-link active" aria-current="page" href="productos.html">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="cart.html">Carrito</a>
+                            <a class="nav-link active" aria-current="page" href="cart.html">Carrito
+                                <span class="badge rounded-pill bg-danger">{{$cart ?? ''}}</span>
+                            </a>
                         </li>
                         @guest
                             <li class="nav-item">

@@ -2,7 +2,8 @@
 
 @section('content')
 
-<section class="container mt-5">
+<x-nav-admin/>
+<!-- <section class="container mt-5">
     <div class="row">
         <div class="col">
             <h1 class="display-5 mb-2">Bienvenido, admin</h1>
@@ -24,7 +25,7 @@
             </ul>
         </div>
     </div>
-</section>
+</section> -->
 <section class="home-cursos container my-5">
     <div class="admin-users_title">
         <h2 class="text-center">Productos</h2>

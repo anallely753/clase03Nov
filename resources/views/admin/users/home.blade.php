@@ -5,12 +5,15 @@
 @if(session('success'))
     <h2>{{session('success')}}</h2>
 @endif
-<section class="container mt-5">
+
+<x-nav-admin/>
+
+<!-- <section class="container mt-5">
     <div class="row">
         <div class="col">
             <h1 class="display-5 mb-2">Bienvenido, admin</h1>
         </div>
-        <!-- <div class="col">
+        <div class="col">
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('adminuser.index')}}">Usuarios</a>
@@ -25,10 +28,9 @@
                     <a class="nav-link" href="#">Reporte</a>
                 </li>
             </ul>
-        </div> -->
-        <x-package-test/>
+        </div>
     </div>
-</section>
+</section> -->
 <section class="home-cursos container my-5">
     <div class="admin-users_title">
         <h2 class="text-center">Usuarios</h2>
