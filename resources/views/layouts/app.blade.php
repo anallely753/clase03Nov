@@ -45,11 +45,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="productos.html">Productos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="cart.html">Carrito
-                                <span class="badge rounded-pill bg-danger">{{$cart ?? ''}}</span>
-                            </a>
-                        </li>
+                        
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{route('login')}}">Iniciar sesión</a>
@@ -58,6 +54,11 @@
                                 <a class="nav-link active btn btn-naranja" aria-current="page" href="{{route('register')}}">Crear cuenta</a>
                             </li>
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{route('cart.show', auth()->user()->id)}}">Carrito
+                                    <span class="badge rounded-pill bg-danger">{{$cart ?? ''}}</span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}

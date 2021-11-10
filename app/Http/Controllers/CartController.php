@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Producto;
+use Illuminate\Database\Eloquent\Builder;
+
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -53,7 +56,16 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+        $duplicados=Producto::withCount(['carts'=>function(Builder $query){
+            $query->where('user_id', auth()->user()->id);
+        }])->get();
+
+
+        $items = Cart::all()->where('user_id',$id);
+        $subtotal=0;
+        $total=0;
+
+        return view('cart', compact('items','duplicados','subtotal','total'));
     }
 
     /**
@@ -76,7 +88,34 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Numero de carritos actuales
+        $actual = Cart::where('user_id',auth()->user()->id)
+        ->where('producto_id',$id)->get()->count();
+
+
+        if($actual<$request->cantidad){
+            $i=0;
+            $diferencia = $request->cantidad - $actual;
+            for($i;$i<$diferencia;$i++){
+                $cart = new Cart;
+                $cart->producto_id = $request->producto_id;
+                $cart->user_id = auth()->user()->id;
+                $cart->save();
+            }
+        }else{
+            $i=0;
+            $diferencia = $actual - $request->cantidad;
+            for($i;$i<$diferencia;$i++){
+                $carts =Cart::where('user_id',auth()->user()->id)
+                ->where('producto_id',$id)->first()->delete();
+            }
+        }
+
+
+        // dd($actual);
+
+        return redirect()->back()->with('success','carrito actualizado');
+
     }
 
     /**
@@ -87,6 +126,14 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $carts = Cart::where('user_id',auth()->user()->id)
+        ->where('producto_id',$id)->delete();
+
+        return redirect()->back()->with('success','producto eliminado');
+
+    }
+
+    public function add(Request $request){
+        return "add";
     }
 }

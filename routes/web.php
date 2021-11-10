@@ -27,5 +27,6 @@ Route::get('vendedor/home', [HomeController::class, 'vendedorHome'])->name('vend
 Route::resource('adminuser', AdminUserController::class);
 Route::resource('adminproducto', AdminProductoController::class);
 Route::resource('cart',CartController::class);
+Route::post('updatecart', [App\Http\Controllers\CartController::class, 'add'])->name('updatecart');
 
 
