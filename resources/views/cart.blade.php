@@ -67,8 +67,8 @@
                     <td>${{$total}}</td>
                 </tr>
                 </tbody>
-
             </table>
+            <a href="{{route('order.index')}}" class="btn btn-naranja float-end">Checkout</a>
         </section>
     </section>
 @endsection
